@@ -7,12 +7,12 @@ def max_consecutive_ones(flag):
             current_count += 1
             max_count = max(max_count, current_count)
         else:
-            current_count = 0  # Reset count when encountering '0'
+            current_count = 0  
 
-    return max_count  # Return the max count of consecutive 1s
+    return max_count-1  
 
 
-def bit_stuffing(data, max_ones, flag="111110"):
+def bit_stuffing(data, max_ones, flag):
     stuffed_data = ""
     count = 0
 
@@ -22,20 +22,20 @@ def bit_stuffing(data, max_ones, flag="111110"):
             count += 1
 
             if count == max_ones:
-                stuffed_data += '0'  # Stuff a 0 after five consecutive 1s
-                count = 0  # Reset count
+                stuffed_data += '0'  
+                count = 0  
         else:
-            count = 0  # Reset count when a 0 is encountered
+            count = 0  
+    print(stuffed_data)
 
-    return flag + stuffed_data + flag  # Append flag at start and end
+    return flag + stuffed_data + flag  
 
 
-def bit_de_stuffing(stuffed_data, max_ones, flag="111110"):
+def bit_de_stuffing(stuffed_data, max_ones, flag):
     if not stuffed_data.startswith(flag) or not stuffed_data.endswith(flag):
         print("Invalid stuffed data. Flag mismatch!")
         return None
 
-    # Remove flag before de-stuffing
     stuffed_data = stuffed_data[len(flag):-len(flag)]
     de_stuffed_data = ""
     count = 0
@@ -56,7 +56,7 @@ def bit_de_stuffing(stuffed_data, max_ones, flag="111110"):
 
 # User input
 data = input("Enter the binary data: ")
-flag = "111110"  # Fixed flag pattern
+flag = input("Enter the flag sequence: ")  # Allow user to input flag
 max_ones = max_consecutive_ones(flag)  # Compute max consecutive ones
 
 # Perform bit stuffing

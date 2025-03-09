@@ -42,10 +42,11 @@ def encodeData(data, key):
           codeword) 
     point = 3
     errorData=create_error(codeword, point)
-    print("Error Data : ", errorData)
-#watch this out for the error
-    recieve(codeword, key)
+    #watch this out for the error
+    #print("Error Data : ", errorData)
     #recieve(errorData, key)
+
+    recieve(codeword, key)
 
 def recieve(errorData, key): 
     l_key = len(key) 
@@ -57,6 +58,8 @@ def recieve(errorData, key):
         print("Data recieved incorrectly")
 
 # Driver code 
-data = "110001101"
-key = "10101"
+#data = "100011011"
+#key = "10101"
+data = input("enter the data: ")
+key = input ("enter the key: ")
 encodeData(data, key) 
